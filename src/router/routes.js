@@ -32,6 +32,14 @@ export default [
           title: '交易员详情'
         }
       },
+      {
+        path: 'follow',
+        component: () => import('../views/pages/trading_strategy/trading_strategy_follow.vue'),
+        name: 'tradingStrategyFollow',
+        meta: {
+          title: '跟随大师'
+        }
+      }
     ]
   },
   {

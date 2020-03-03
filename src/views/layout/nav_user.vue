@@ -1,17 +1,39 @@
 <template lang="pug">
   #nav-user
-    .nav-user-container
+    .nav-user-container(
+      v-if="userInfo === null"
+    )
       router-link.nav-user-btn.register(to="/user/registe") 注册
       router-link.nav-user-btn.login(to="/user/login") 登录
+    .nav-user-container(
+      v-else
+    )
+      .nav-user-content
+        .nav-user-avatar
+          img(
+            :src="avatar"
+          )
+        .nav-user-name {{userInfo.refName}}
+        .nav-user-menu
+          .nav-user-menu-item 退出
 </template>
 
 <script>
-import avatar from '../../assets/images/avatar.svg'
+import avatar from '../../assets/images/avatar-default.svg'
 
 export default {
   data() {
     return {
       avatar,
+      userInfo: null
+    }
+  },
+  created() {
+    const storage = window.localStorage
+    const userInfo = storage.getItem('follow_user_info')
+
+    if (userInfo !== null) {
+      this.userInfo = JSON.parse(userInfo)
     }
   },
   computed: {
@@ -56,14 +78,46 @@ export default {
       &:hover
         background-color: #f05102
 
+  &-content
+    display: flex
+    align-items: center
+    cursor: pointer
+    position: relative
+    height: 60px
+
+    &:hover .nav-user-menu
+      display: block
+
   &-avatar
-    width: 32px
-    height: 32px
+    width: 40px
+    height: 40px
     border-radius: 50%
     overflow: hidden
-    margin-right: 24px
+    margin-right: 12px
 
     img
       width: 100%
       height: 100%
+
+  &-menu
+    position: absolute
+    top: 100%
+    right: -10px
+    background-color: #fff
+    display: none
+    border-top: 1px solid #e9e9e9
+
+    &-item
+      min-width: 140px
+      height: 50px
+      line-height: 50px
+      padding: 0 20px
+      border-bottom: 1px solid #e9e9e9
+      cursor: pointer
+
+      &:hover
+        color: #ff6200
+
+      &:last-child
+        border-bottom: none
 </style>

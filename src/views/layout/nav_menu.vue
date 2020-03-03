@@ -8,7 +8,6 @@
         :class="menuActive(m.name)"
         @click="routeTo(m.name)"
       ) {{m.text}}
-
 </template>
 
 <script>

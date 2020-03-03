@@ -12,7 +12,7 @@
           .trading-list-card-server {{info.brokerName}}
         .trading-list-card-avatar
           img(
-            :src="info.avatarUrl"
+            :src="info.avatarUrl ? url + info.avatarUrl : null"
           )
       .trading-list-card-content
         .trading-list-card-list
@@ -43,10 +43,12 @@
 </template>
 
 <script>
+import _config from '../../../base_config'
+
 export default {
   data() {
     return {
-
+      url: _config.BASE_URL
     }
   },
   props: {

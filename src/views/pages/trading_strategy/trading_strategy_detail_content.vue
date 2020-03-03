@@ -11,7 +11,9 @@
                 v-if="valuation !== null"
                 :chartsRadarData="chartsRadarData"
               )
-              .trading-detail-content-header-body-level {{valuation.level}}
+              .trading-detail-content-header-body-level(
+                v-if="valuation !== null"
+              ) {{valuation.level}}
           .trading-detail-content-header-body-right
             .trading-detail-content-header-body-item
               .trading-detail-content-header-body-item-title 账户承诺

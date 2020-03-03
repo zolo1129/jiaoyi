@@ -149,6 +149,14 @@ export default {
 
           if (res.data.code === 101) {
             this.$message.warning(res.data.message)
+          } else {
+            const storage = window.localStorage
+
+            storage.setItem('follow_user_info', JSON.stringify(res.data.content.data))
+
+            this.$router.push({
+              name: 'index'
+            })
           }
         })
     }

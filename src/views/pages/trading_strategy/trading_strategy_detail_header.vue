@@ -3,7 +3,9 @@
     .trading-detail-header
       .trading-detail-header-container
         .trading-detail-header-avatar
-          img(src="")
+          img(
+            :src="summary.avatarUrl ? url + summary.avatarUrl : null"
+          )
         .trading-detail-header-context
           .trading-detail-header-introduction
             .trading-detail-header-nickname {{summary.signalName}}
@@ -11,7 +13,14 @@
 </template>
 
 <script>
+import _config from '../../../base_config'
+
 export default {
+  data() {
+    return {
+      url: _config.BASE_URL
+    }
+  },
   props: {
     summary: {
       type: Object

@@ -51,8 +51,16 @@ export default {
         .then(res => {
           console.log(res)
 
-          if (res.data.code === 101) {
+          if (res.data.code === 200001) {
             this.$message.warning(res.data.message)
+          } else {
+            const storage = window.localStorage
+
+            storage.setItem('follow_user_info', JSON.stringify(res.data.content.data))
+
+            this.$router.push({
+              name: 'index'
+            })
           }
         })
     }
